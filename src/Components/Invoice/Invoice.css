@@ -1,0 +1,69 @@
+
+    input[type=text],textarea,input[type=text]:focus,textarea:focus{
+        background-color: inherit;
+        font-size: 18px;
+        color: inherit;
+        border:none;
+        outline: none;
+    }
+    .info-text{
+        width: 300px;
+    }
+    input[type=date]{
+        border:none;
+        outline: none;
+    }
+    textarea{
+        overflow-y: hidden;
+        resize: none;
+    }
+    .input{
+        margin: auto;
+        width: 800px;
+        padding: 60px;
+        height: 100vh;
+    }
+    header{
+        text-align: center;
+        width: 100%;
+        margin-bottom:20px;
+    }
+
+    .header-info div{
+        display: flex;
+        justify-content: space-around;
+    }
+    .information{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    table{
+        text-align: center;
+        margin: 30px;
+        width:100%;
+    }
+    tfoot{
+        
+    }
+    th,td{
+        padding: 10px 0;
+    }
+    .update-item-text{
+        text-align: center;
+        width: 100px;
+    }
+    .delete-task{
+        position: absolute;
+        display: none;
+    }
+    .item:hover .delete-task{
+        display: block;
+
+    }
+    @media print{
+        .no-print{
+            visibility: hidden;
+        }
+    }
+
