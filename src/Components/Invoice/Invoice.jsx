@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from './Input'
-import Preview from './Preview'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 export class Invoice extends React.Component {
 	constructor(props) {
@@ -85,9 +84,6 @@ export class Invoice extends React.Component {
 								addNew={this.addNew}
 								updateItem={this.updateItem}
 								deleteItem={this.deleteItem}/>
-						</Route>
-						<Route path="/preview">
-							<Preview/>
 						</Route>
 					</Switch>
 				</Router>
