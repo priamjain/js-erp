@@ -223,7 +223,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				</tbody>
 			</table>
-			<table className='signature'>
+			<table className='signature' border="0">
 				<tbody>
 				<tr><td><strong>For Jain Sons</strong></td></tr>
 				<tr><td height="30px"></td></tr>
