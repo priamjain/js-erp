@@ -14,7 +14,8 @@ export class Invoice extends React.Component {
 			 items:[],
 			 totalAmount:0,
 			 int:0,
-			 gst:0
+			 sgst:0,
+			 cgst:0
 		}
 	}
 
@@ -31,9 +32,10 @@ export class Invoice extends React.Component {
 				id:prev.int,
 				name:"",
 				hdn:"",
-				ppu:0,
-				quantity:0,
-				amount:0
+				ppu:"",
+				unit:"",
+				quantity:"",
+				amount:""
 			}
 
 			let items = [...prev.items,newItem]
