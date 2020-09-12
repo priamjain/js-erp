@@ -40,7 +40,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						</tr>
 						<tr>
 							<td>Client Address:</td>
-							<td><textarea rows="3" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e)}} placeholder="Client Address"/></td>
+							<td><textarea rows="2" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e)}} placeholder="Client Address"/></td>
 						</tr>
 						<tr>
 							<td>Payment Method:</td>
@@ -61,7 +61,102 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<th width="200px">Amount</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
+					<tr className="main-row">
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e)}} placeholder=""/></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e)}} placeholder=""/></td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table className="main-inside">
+								<tbody>
+									{input.items.map((item,index)=>{
+										return(
+											<tr className="item" key={item.id}>
+												<td>{item.ppu * item.quantity}</td>
+											</tr>
+											)
+									})}
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+{/*				<tbody>
 				{input.items.map((item,index)=>{
 					return(
 						<tr className="item" key={item.id}>
@@ -76,7 +171,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						)
 				})}
 				
-				</tbody>
+				</tbody>*/}
 			</table>
 				<div className="no-print">
 						<div>

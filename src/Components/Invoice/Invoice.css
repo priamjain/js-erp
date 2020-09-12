@@ -1,14 +1,16 @@
+
     body{
         font-size: 12px!important;
         margin: 0;
         padding: 0;
+        zoom:175%;
     }
     h1{
         color:#007bff;
-            font-size: 3em;
-            font-family: times;
-            font-weight: 1000;
-            }
+        font-size: 3em;
+        font-family: times;
+        font-weight: 1000;
+    }
     input[type=text],textarea,input[type=text]:focus,textarea:focus{
         width: 100%;
         text-align: left;
@@ -27,9 +29,11 @@
         resize: none;
     }
     .input{
+        padding: 10px;
         margin: auto;
-        width: 90%;
-        height: 100vh;
+        width: 210mm;
+        height: 297mm;
+        max-height: 297mm;
     }
     header{
         text-align: center;
@@ -42,9 +46,7 @@
         justify-content: space-around;
     }
     table{
-        
         vertical-align: top;
-        border:1;
         border-collapse: collapse;
         margin: 5px 0;
         width:100%;
@@ -55,45 +57,65 @@
     td,th{
         border-left:1px solid black;
         vertical-align: top;
-        padding: 2px;
-        border-: none;
     }
     .item{
         text-align: top;
     }
     .footer{
-         margin:0 10px;
-        border-collapse: collapse;
-        width: 100%;
-        margin-left: auto;
-    }
-    .footer input{
-        text-align: start;
-    }
-    .delete-item{
-        background-color: red;
-        position: absolute;
-        display: none;
-    }
-    .item:hover .delete-item{
-        display: block;
+       margin:0 10px;
+       border-collapse: collapse;
+       width: 100%;
+       margin-left: auto;
+   }
+   .footer input{
+    text-align: start;
+}
+.footer p{
+    padding-left: 10px;
+}
+.delete-item{
+    background-color: red;
+    position: absolute;
+    display: none;
+}
+.item{
+    height: 20px;
+}
+.item:hover .delete-item{
+    display: block;
 
+}
+.signature{
+    width: 200px;
+    margin-left: auto;
+}
+.main{
+    text-align: center;
+    display: block;
+    height: 590px;
+}
+.main-row>td{
+    height: 572px;
+}
+.main input{
+    text-align: center;
+}
+.main-inside{
+    border:none;
+}
+.main-inside td{
+    border-left: none;
+} 
+@media print{
+    .no-print{
+        visibility: hidden;
     }
-    .signature{
-        width: 200px;
-        margin-left: auto;
+    body,html{
+        zoom:0;
     }
-    .main{
-        text-align: center;
-        display: block;
-        height: 500px;
-    }
-    .main input{
-        text-align: center;
-    }
-    @media print{
-        .no-print{
-            visibility: hidden;
-        }
-    }
+}
+@page {
+  size: A4;
+  margin: 0;
+}
 

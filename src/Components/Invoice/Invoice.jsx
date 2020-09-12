@@ -28,6 +28,7 @@ export class Invoice extends React.Component {
 	}
 
 	addNew = () =>{
+		if(this.state.items.length<24){
 		this.setState((prev)=>{
 			let newItem={
 				id:prev.int,
@@ -48,6 +49,7 @@ export class Invoice extends React.Component {
 			},()=>{
 				console.log([...this.state.items])
 			})
+	}
 
 	}
 
