@@ -15,7 +15,8 @@ export class Invoice extends React.Component {
 			 totalAmount:0,
 			 int:0,
 			 sgst:0,
-			 cgst:0
+			 cgst:0,
+			 igst:0
 		}
 	}
 

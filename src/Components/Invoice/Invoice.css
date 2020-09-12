@@ -3,6 +3,12 @@
         margin: 0;
         padding: 0;
     }
+    h1{
+        color:#007bff;
+            font-size: 3em;
+            font-family: times;
+            font-weight: 1000;
+            }
     input[type=text],textarea,input[type=text]:focus,textarea:focus{
         width: 100%;
         text-align: left;
@@ -26,7 +32,6 @@
         height: 100vh;
     }
     header{
-        font-size:1.3em;
         text-align: center;
         width: 100%;
         margin-bottom:20px;

@@ -86,7 +86,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 			<table className="footer" border="1">
 				<tbody>			
 				<tr>
-					<td rowSpan="7" width="50%">
+					<td rowSpan="9" width="50%">
 						<p><strong>Bank Details:</strong></p>
 						<p>Name of Bank: <strong>ALLAHABAD BANK</strong></p>
 						<p>Branch: <strong>Mall Road, Amritsar</strong></p>
@@ -115,8 +115,16 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					<td>Rs. {(amount*input.sgst/100)}</td>
 				</tr>
 				<tr>
+					<td>IGST % :</td>
+					<td><input type="text" className="update-item-text" value={input.igst} onChange={e=>{handleChange('igst',e)}} placeholder="IGST"/></td>
+				</tr>
+				<tr>
+					<td>IGST Amount:</td>
+					<td>Rs. {(amount*input.igst/100)}</td>
+				</tr>
+				<tr>
 					<td>Amount to be Paid:</td>
-					<td>Rs. {amount-(amount*input.cgst/100)-(amount*input.sgst/100)}</td>
+					<td>Rs. {amount+(amount*input.cgst/100)+(amount*input.sgst/100)+(amount*input.igst/100)}</td>
 				</tr>
 				</tbody>
 			</table>
