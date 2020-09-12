@@ -49,7 +49,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						
 					</tbody>
 				</table>
-			<table border="1">
+			<table className='main'>
 				<thead>
 					<tr>
 						<th width="40px">S No.</th>
@@ -75,13 +75,14 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						</tr>
 						)
 				})}
-				<tr className="no-print">
-						<td>
-							<button onClick={addNew}>+</button>
-						</td>
-					</tr>
+				
 				</tbody>
 			</table>
+				<div className="no-print">
+						<div>
+							<button onClick={addNew}>+</button>
+						</div>
+					</div>
 			<table className="footer" border="1">
 				<tbody>			
 				<tr>
@@ -117,6 +118,13 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					<td>Amount to be Paid:</td>
 					<td>Rs. {amount-(amount*input.cgst/100)-(amount*input.sgst/100)}</td>
 				</tr>
+				</tbody>
+			</table>
+			<table className='signature'>
+				<tbody>
+				<tr><td><strong>For Jain Sons</strong></td></tr>
+				<tr><td height="30px"></td></tr>
+				<tr><td><strong>Authorised Signature</strong></td></tr>
 				</tbody>
 			</table>
 		</div>
