@@ -34,17 +34,42 @@
         justify-content: space-around;
     }
     .information{
-        display: flex;
-        justify-content: space-between;
+        margin: 20px 0px;
+        vertical-align: top;
+        display: inline-block;
+        text-align: left;
+        width: 400px;
     }
-    
+    .information td{
+        vertical-align: center;
+    }
+    .information input,.information textarea{
+        width: 200px;
+    }
+    .client-info{
+        display: flex;
+    }
+    .client-info div{
+        margin: 5px;
+    }
     table{
         text-align: center;
-        margin: 30px;
+        margin: 20px;
         width:100%;
     }
-    tfoot{
-        
+    .result{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .result input{
+        text-align: start;
+    }
+    .result-info{
+        margin: 20px;
+    }
+    .result-info div{
+        margin: 5px;
     }
     th,td{
         padding: 10px 0;
@@ -53,11 +78,11 @@
         text-align: center;
         width: 100px;
     }
-    .delete-task{
+    .delete-item{
         position: absolute;
         display: none;
     }
-    .item:hover .delete-task{
+    .item:hover .delete-item{
         display: block;
 
     }

@@ -14,7 +14,8 @@ export class Invoice extends React.Component {
 			 invoiceNumber:"",
 			 items:[],
 			 totalAmount:0,
-			 int:0
+			 int:0,
+			 gst:0
 		}
 	}
 

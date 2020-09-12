@@ -1,6 +1,7 @@
 import React from 'react'
 import './Invoice.css'
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
+	let amount = input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
 	return (
 		<div className="input">
 			<header>
@@ -23,18 +24,41 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</div>
 			</header>
 			<hr/>
-			<div className="information">
-				<div>
-					<input className="info-text" type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e)}} placeholder="Client Name"/><br/>
-					<input className="info-text" type="text" value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e)}} placeholder="Client GSTIN"/><br/>
-					<textarea className="info-text" rows="3" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e)}} placeholder="Client Address"/><br/>
-					<input className="info-text" type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}} placeholder="Payment Method"/>
-				</div>
-				<div>
-					Invoice Number: <input className="info-text" type="text" style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e)}} placeholder="Invoice No."/><br/>
-					Date: <input type="date"/>
-				</div>
-				
+			<div>
+				<table className="information">
+					<tbody>
+						<tr>
+							<td>Client Name:</td>
+							<td><input className="info-text no-print" type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e)}} placeholder="Client Name"/></td>
+						</tr>
+						<tr>
+							<td>Client GSTIN:</td>
+							<td><input className="info-text" type="text" value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e)}} placeholder="Client GSTIN"/></td>
+						</tr>
+						<tr>
+							<td style={{'vertical-align':'top','padding-top':'10px'}}>Client Address:</td>
+							<td><textarea className="info-text" rows="3" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e)}} placeholder="Client Address"/></td>
+						</tr>
+						<tr>
+							<td>Payment Method:</td>
+							<td><input className="info-text" type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}} placeholder="Payment Method"/></td>
+						</tr>
+					</tbody>
+				</table>
+				<table className="information">
+					<tbody>
+						<tr>
+							<td>Invoice Number:</td>
+							<td><input className="info-text" type="text" style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e)}} placeholder="Invoice No."/></td>
+						</tr>
+						<tr>
+							<td>Date:</td>
+							<td><input type="date"/></td>
+						</tr>
+					</tbody>
+				</table>
+					
+					
 			</div>
 			<table>
 				<thead className="highlight">
@@ -51,7 +75,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				{input.items.map((item,index)=>{
 					return(
 						<tr className="item" key={item.id}>
-							<td><button className="delete-task" onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
+							<td><button className="delete-item" onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
 							<td><input type="text" className="update-item-text" value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
 							<td><input type="text" className="update-item-text" value={item.hdn} onChange={e=>{updateItem(item.id,"hdn",e)}} placeholder="Item HDN"/></td>
 							<td><input type="text" className="update-item-text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Price Per Unit"/></td>
@@ -66,15 +90,37 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						</td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-					<td colSpan="6" >
-					Total Amount:  {input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0)}
-					</td>
-					</tr>
-				</tfoot>
-
 			</table>
+			<div className="result">
+				<div className="result-info">
+					<div>
+						Total Amount:
+					</div>
+					<div>
+						GST % :
+					</div>
+					<div>
+						GST Amount:
+					</div>
+					<div>
+						Amount to be Paid:
+					</div>
+				</div>
+				<div className="result-info">
+					<div>
+						Rs. {amount}
+					</div>
+					<div>
+						<input type="text" className="update-item-text" value={input.gst} onChange={e=>{handleChange('gst',e)}} placeholder="GST"/>
+					</div>
+					<div>
+						Rs. {(amount*input.gst/100)}
+					</div>
+					<div>
+						Rs. {amount-(amount*input.gst/100)}
+					</div>
+				</div>
+			</div>
 		</div>
 		)
 }
