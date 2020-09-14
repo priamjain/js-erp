@@ -44,7 +44,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						</tr>
 						<tr>
 							<td>Payment Method:</td>
-							<td><input type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}} placeholder="Payment Method"/></td>
+							<select name="PaymentMethod" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}}>
+								<option value="CREDIT">CREDIT</option>
+								<option value="CASH">CASH</option>
+							</select>
+							
+							{/*<td><input type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}} placeholder="Payment Method"/></td>*/}
 						</tr>
 						
 					</tbody>

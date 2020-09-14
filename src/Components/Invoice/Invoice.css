@@ -1,73 +1,81 @@
 
-    body{
-        font-size: 12px!important;
-        margin: 0;
-        padding: 0;
-        zoom:175%;
-    }
-    h1{
-        color:#007bff;
-        font-size: 3em;
-        font-family: times;
-        font-weight: 1000;
-    }
-    input[type=text],textarea,input[type=text]:focus,textarea:focus{
-        width: 100%;
-        text-align: left;
-        background-color: inherit;
-        font-size: 12px!important;
-        color: inherit;
-        border:none;
-        outline: none;
-    }
-    input[type=date]{
-        border:none;
-        outline: none;
-    }
-    textarea{
-        overflow-y: hidden;
-        resize: none;
-    }
-    .input{
-        padding: 10px;
-        margin: auto;
-        width: 210mm;
-        height: 297mm;
-        max-height: 297mm;
-    }
-    header{
-        text-align: center;
-        width: 100%;
-        margin-bottom:20px;
-    }
+body{
+    font-size: 12px!important;
+    margin: 0;
+    padding: 0;
+    zoom:175%;
+}
+h1{
+    color:#007bff;
+    font-size: 3em;
+    font-family: times;
+    font-weight: 1000;
+}
+input[type=text],textarea,input[type=text]:focus,textarea:focus{
+    width: 100%;
+    text-align: left;
+    background-color: inherit;
+    font-size: 12px!important;
+    color: inherit;
+    border:none;
+    outline: none;
+}
+input[type=date]{
+    border:none;
+    outline: none;
+}
+textarea{
+    overflow-y: hidden;
+    resize: none;
+}
+.input{
+    padding: 3px;
+    margin: auto;
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+}
+header{
+    text-align: center;
+    width: 100%;
+    margin-bottom:20px;
+}
 
-    .header-info div{
-        display: flex;
-        justify-content: space-around;
-    }
-    table{
-        vertical-align: top;
-        border-collapse: collapse;
-        margin: 5px 0;
-        width:100%;
-    }
-    table{
-        border:1px solid black;
-    }
-    td,th{
-        border-left:1px solid black;
-        vertical-align: top;
-    }
-    .item{
-        text-align: top;
-    }
-    .footer{
-       margin:0 10px;
-       border-collapse: collapse;
-       width: 100%;
-       margin-left: auto;
-   }
-   .footer input{
+.header-info div{
+    display: flex;
+    justify-content: space-around;
+}
+table{
+    vertical-align: top;
+    border-collapse: collapse;
+    margin: 5px 0;
+    width:100%;
+}
+table{
+    border:1px solid black;
+}
+td,th{
+    border-left:1px solid black;
+    vertical-align: top;
+}
+select {
+    padding: 0 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none; /* If you want to remove the border as well */
+    background: none;
+}
+.item{
+    text-align: top;
+}
+.footer{
+ margin:0 10px;
+ border-collapse: collapse;
+ width: 100%;
+ margin-left: auto;
+}
+.footer input{
     text-align: start;
 }
 .footer p{
