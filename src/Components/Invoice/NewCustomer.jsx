@@ -23,7 +23,7 @@ export class NewCustomer extends React.Component {
 
 		return (
 			<div className={styles.main} onClick={(e)=>{this.props.setModal(false)}}>
-			<form className={styles.form} onSubmit={this.handleSubmit} onCLick={e=>e.stopPropagation()}>
+			<form className={styles.form} onSubmit={this.handleSubmit} onClick={e=>e.stopPropagation()}>
 				<p>Client Name: <input type="text" className={styles.input_text} value={this.state.clientName} onChange={e=>this.setState({clientName:e.target.value})} /></p>
 				<p>Client Address: <textarea className={styles.input_textarea} value={this.state.clientAddress} onChange={e=>this.setState({clientAddress:e.target.value})} /></p>
 				<p>Client GSTIN: <input type="text" className={styles.input_text} value={this.state.clientGSTIN} onChange={e=>this.setState({clientGSTIN:e.target.value})} /></p>
