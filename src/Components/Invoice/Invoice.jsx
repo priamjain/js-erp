@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from './Input'
-import NewCustomer from './NewCustomer'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 export class Invoice extends React.Component {
 	constructor(props) {
@@ -93,11 +92,6 @@ export class Invoice extends React.Component {
 								addNew={this.addNew}
 								updateItem={this.updateItem}
 								deleteItem={this.deleteItem}/>
-						</Route>
-						<Route path="/customer/new" exact>
-							<NewCustomer 
-								customers={this.state.customers}
-								handleChange={this.handleChange}/>
 						</Route>
 					</Switch>
 				</Router>

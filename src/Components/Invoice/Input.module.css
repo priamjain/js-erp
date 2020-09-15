@@ -30,7 +30,11 @@
     border:none;
     outline: none;
 }
+.info_input_text{
+    padding: 0 40px;
+}
 .input_date{
+    padding: 0 5px;
     border:none;
     outline: none;
 }
@@ -59,7 +63,7 @@
     vertical-align: top;
 }
 .select {
-    padding: 0 5px;
+    padding: 0 40px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styles from './Input.module.css'
-import {Link} from 'react-router-dom'
+import NewCustomer from './NewCustomer'
+
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
+	const [modal, setModal] = useState(false);
 	const setCustomer = (e) =>{
 		handleChange('clientName',e.target.value);
 		let customer = input.customers.filter(cust => cust.clientName===e.target.value)
@@ -10,6 +12,8 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 	}
 	let amount = input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
 	return (
+		<div>
+		{modal?<NewCustomer customers={input.customers} handleChange={handleChange} setModal={setModal}/>:null}
 		<div className={styles.invoice}>
 			<header className={styles.header}>
 				<div>
@@ -34,7 +38,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				<table border="1" className={styles.table}>
 					<tbody>
 						<tr>
-							<td>Invoice Number: <input type="text" className={styles.input_text} style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e.target.value)}} placeholder="Invoice No."/></td>
+							<td>Invoice Number: <input type="text" className={`${styles.input_text}`} style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e.target.value)}} placeholder="Invoice No."/></td>
 							<td>Date:<input className={styles.input_date} type="date"/></td>
 						</tr>
 						<tr>
@@ -44,16 +48,16 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 								{input.customers.map(cust=>{
 									return <option key={cust.clientGSTIN} name={cust.clientName}>{cust.clientName}</option>})}
 							</select>
-							<div className={styles.no_print}><Link to="/customer/new">Add New Customer</Link></div></td>
+							<button type="button" className={styles.no_print} onClick={e=>setModal(true)}>Add New Customer</button></td>
 							{/*<td><input type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e.target.value)}} placeholder="Client Name"/></td>*/}
 						</tr>
 						<tr>
 							<td>Client GSTIN:</td>
-							<td><input type="text" className={styles.input_text} value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e.target.value)}} placeholder="Client GSTIN"/></td>
+							<td><input type="text" className={`${styles.input_text} ${styles.info_input_text}`} value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e.target.value)}} placeholder="Client GSTIN"/></td>
 						</tr>
 						<tr>
 							<td>Client Address:</td>
-							<td><textarea rows="2" className={`${styles.input_text} ${styles.fixed_textarea}`} value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e.target.value)}} placeholder="Client Address" /></td>
+							<td><textarea rows="2" className={`${styles.input_text} ${styles.info_input_text} ${styles.fixed_textarea}`} value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e.target.value)}} placeholder="Client Address" /></td>
 						</tr>
 						<tr>
 							<td>Payment Method:</td>
@@ -248,6 +252,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				<tr><td><strong>Authorised Signature</strong></td></tr>
 				</tbody>
 			</table>
+		</div>
 		</div>
 		)
 }
