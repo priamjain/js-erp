@@ -1,11 +1,13 @@
 import React from 'react'
 import Input from './Input'
+import NewCustomer from './NewCustomer'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 export class Invoice extends React.Component {
 	constructor(props) {
 		super(props)
 	
 		this.state = {
+			 customers:[],
 			 clientName:"",
 			 clientAddress:"",
 			 clientGSTIN:"",
@@ -19,11 +21,15 @@ export class Invoice extends React.Component {
 			 igst:0
 		}
 	}
-
-
-	handleChange = (key,event) =>{
+	componentDidMount = () =>{
+		let customers = localStorage.getItem('customers');
+		if(customers!==null){
+			this.setState({'customers':[...JSON.parse(customers)]})
+		}
+	}
+	handleChange = (key,value) =>{
 		this.setState({
-			[key]:event.target.value
+			[key]:value
 		})
 	}
 
@@ -89,6 +95,11 @@ export class Invoice extends React.Component {
 								addNew={this.addNew}
 								updateItem={this.updateItem}
 								deleteItem={this.deleteItem}/>
+						</Route>
+						<Route path="/customer/new" exact>
+							<NewCustomer 
+								customers={this.state.customers}
+								handleChange={this.handleChange}/>
 						</Route>
 					</Switch>
 				</Router>

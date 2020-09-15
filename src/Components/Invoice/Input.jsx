@@ -1,7 +1,13 @@
 import React from 'react'
 import './Invoice.css'
+import {Link} from 'react-router-dom'
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
-	
+	const setCustomer = (e) =>{
+		handleChange('clientName',e.target.value);
+		let customer = input.customers.filter(cust => cust.clientName===e.target.value)
+		handleChange('clientAddress',customer[0]['clientAddress']);
+		handleChange('clientGSTIN',customer[0]['clientGSTIN']);
+	}
 	let amount = input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
 	return (
 		<div className="input">
@@ -28,29 +34,35 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				<table border="1">
 					<tbody>
 						<tr>
-							<td>Invoice Number: <input type="text" style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e)}} placeholder="Invoice No."/></td>
+							<td>Invoice Number: <input type="text" style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e.target.value)}} placeholder="Invoice No."/></td>
 							<td>Date:<input type="date"/></td>
 						</tr>
 						<tr>
 							<td>Client Name:</td>
-							<td><input type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e)}} placeholder="Client Name"/></td>
+							<td><select value={input.clientName} onChange={(e)=>setCustomer(e)}>
+								<option>--Select--</option>
+								{input.customers.map(cust=>{
+									return <option key={cust.clientGSTIN} name={cust.clientName}>{cust.clientName}</option>})}
+							</select>
+							<div className="no-print"><Link to="/customer/new">Add New Customer</Link></div></td>
+							{/*<td><input type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e.target.value)}} placeholder="Client Name"/></td>*/}
 						</tr>
 						<tr>
 							<td>Client GSTIN:</td>
-							<td><input type="text" value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e)}} placeholder="Client GSTIN"/></td>
+							<td><input type="text" value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e.target.value)}} placeholder="Client GSTIN"/></td>
 						</tr>
 						<tr>
 							<td>Client Address:</td>
-							<td><textarea rows="2" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e)}} placeholder="Client Address"/></td>
+							<td><textarea rows="2" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e.target.value)}} placeholder="Client Address" /></td>
 						</tr>
 						<tr>
 							<td>Payment Method:</td>
-							<td><select name="PaymentMethod" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}}>
+							<td><select name="PaymentMethod" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e.target.value)}}>
 								<option value="CREDIT">CREDIT</option>
 								<option value="CASH">CASH</option>
 							</select></td>
 							
-							{/*<td><input type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e)}} placeholder="Payment Method"/></td>*/}
+							{/*<td><input type="text" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e.target.value)}} placeholder="Payment Method"/></td>*/}
 						</tr>
 						
 					</tbody>
@@ -75,7 +87,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
+												<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e.target.value)}>-</button><div>{index+1}</div></td>
 											</tr>
 											)
 									})}
@@ -88,7 +100,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
+												<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e.target.value)}} placeholder="Item Name"/></td>
 											</tr>
 											)
 									})}
@@ -101,7 +113,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e)}} placeholder=""/></td>
+												<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e.target.value)}} placeholder=""/></td>
 											</tr>
 											)
 									})}
@@ -114,7 +126,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
+												<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e.target.value)}} placeholder="Quantity"/></td>
 											</tr>
 											)
 									})}
@@ -127,7 +139,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
+												<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e.target.value)}} placeholder="Rate"/></td>
 											</tr>
 											)
 									})}
@@ -140,7 +152,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.items.map((item,index)=>{
 										return(
 											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e)}} placeholder=""/></td>
+												<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e.target.value)}} placeholder=""/></td>
 											</tr>
 											)
 									})}
@@ -166,12 +178,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				{input.items.map((item,index)=>{
 					return(
 						<tr className="item" key={item.id}>
-							<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
-							<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
-							<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e)}} placeholder=""/></td>
-							<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
-							<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
-							<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e)}} placeholder=""/></td>
+							<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e.target.value)}>-</button><div>{index+1}</div></td>
+							<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e.target.value)}} placeholder="Item Name"/></td>
+							<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e.target.value)}} placeholder=""/></td>
+							<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e.target.value)}} placeholder="Quantity"/></td>
+							<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e.target.value)}} placeholder="Rate"/></td>
+							<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e.target.value)}} placeholder=""/></td>
 							<td>{item.ppu * item.quantity}</td>
 						</tr>
 						)
@@ -201,7 +213,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>CGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.cgst} onChange={e=>{handleChange('cgst',e)}} placeholder="CGST"/></td>
+					<td><input type="text" className="update-item-text" value={input.cgst} onChange={e=>{handleChange('cgst',e.target.value)}} placeholder="CGST"/></td>
 				</tr>
 				<tr>
 					<td>CGST Amount:</td>
@@ -209,7 +221,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>SGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.sgst} onChange={e=>{handleChange('sgst',e)}} placeholder="SGST"/></td>
+					<td><input type="text" className="update-item-text" value={input.sgst} onChange={e=>{handleChange('sgst',e.target.value)}} placeholder="SGST"/></td>
 				</tr>
 				<tr>
 					<td>SGST Amount:</td>
@@ -217,7 +229,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>IGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.igst} onChange={e=>{handleChange('igst',e)}} placeholder="IGST"/></td>
+					<td><input type="text" className="update-item-text" value={input.igst} onChange={e=>{handleChange('igst',e.target.value)}} placeholder="IGST"/></td>
 				</tr>
 				<tr>
 					<td>IGST Amount:</td>
