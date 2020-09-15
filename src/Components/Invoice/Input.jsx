@@ -1,5 +1,5 @@
 import React from 'react'
-import './Invoice.css'
+import styles from './Input.module.css'
 import {Link} from 'react-router-dom'
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 	const setCustomer = (e) =>{
@@ -10,14 +10,14 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 	}
 	let amount = input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
 	return (
-		<div className="input">
-			<header>
+		<div className={styles.invoice}>
+			<header className={styles.header}>
 				<div>
-					<h1>
+					<h1 className={styles.firm_name}>
 						JAIN SONS
 					</h1>
 				</div>
-				<div className="header-info">
+				<div className={styles.header_info}>
 					<p>
 							771, Guru Arjun Dev Nagar,
 							Opp. Ahuja Sweets, Tarn Taran Road,
@@ -31,33 +31,33 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</div>
 			</header>
 			<hr/>
-				<table border="1">
+				<table border="1" className={styles.table}>
 					<tbody>
 						<tr>
-							<td>Invoice Number: <input type="text" style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e.target.value)}} placeholder="Invoice No."/></td>
-							<td>Date:<input type="date"/></td>
+							<td>Invoice Number: <input type="text" className={styles.input_text} style={{width:"100px"}}value={input.invoiceNumber} onChange={e=>{handleChange('invoiceNumber',e.target.value)}} placeholder="Invoice No."/></td>
+							<td>Date:<input className={styles.input_date} type="date"/></td>
 						</tr>
 						<tr>
 							<td>Client Name:</td>
-							<td><select value={input.clientName} onChange={(e)=>setCustomer(e)}>
+							<td><select className={styles.select} value={input.clientName} onChange={(e)=>setCustomer(e)}>
 								<option>--Select--</option>
 								{input.customers.map(cust=>{
 									return <option key={cust.clientGSTIN} name={cust.clientName}>{cust.clientName}</option>})}
 							</select>
-							<div className="no-print"><Link to="/customer/new">Add New Customer</Link></div></td>
+							<div className={styles.no_print}><Link to="/customer/new">Add New Customer</Link></div></td>
 							{/*<td><input type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e.target.value)}} placeholder="Client Name"/></td>*/}
 						</tr>
 						<tr>
 							<td>Client GSTIN:</td>
-							<td><input type="text" value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e.target.value)}} placeholder="Client GSTIN"/></td>
+							<td><input type="text" className={styles.input_text} value={input.clientGSTIN} onChange={e=>{handleChange('clientGSTIN',e.target.value)}} placeholder="Client GSTIN"/></td>
 						</tr>
 						<tr>
 							<td>Client Address:</td>
-							<td><textarea rows="2" value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e.target.value)}} placeholder="Client Address" /></td>
+							<td><textarea rows="2" className={`${styles.input_text} ${styles.fixed_textarea}`} value={input.clientAddress} onChange={e=>{handleChange('clientAddress',e.target.value)}} placeholder="Client Address" /></td>
 						</tr>
 						<tr>
 							<td>Payment Method:</td>
-							<td><select name="PaymentMethod" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e.target.value)}}>
+							<td><select className={styles.select} name="PaymentMethod" value={input.paymentMethod} onChange={e=>{handleChange('paymentMethod',e.target.value)}}>
 								<option value="CREDIT">CREDIT</option>
 								<option value="CASH">CASH</option>
 							</select></td>
@@ -67,7 +67,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						
 					</tbody>
 				</table>
-			<table className='main'>
+			<table className={`${styles.table} ${styles.main}`}>
 				<thead>
 					<tr>
 						<th width="40px">S No.</th>
@@ -80,14 +80,14 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					</tr>
 				</thead>
 				<tbody >
-					<tr className="main-row">
+					<tr className={styles.main_row}>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e.target.value)}>-</button><div>{index+1}</div></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><button className={`${styles.delete_item} ${styles.no_print}`} onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
 											</tr>
 											)
 									})}
@@ -95,12 +95,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e.target.value)}} placeholder="Item Name"/></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><input type="text" className={styles.input_text} value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
 											</tr>
 											)
 									})}
@@ -108,12 +108,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e.target.value)}} placeholder=""/></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><input type="text" className={styles.input_text} value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e)}} placeholder=""/></td>
 											</tr>
 											)
 									})}
@@ -121,12 +121,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e.target.value)}} placeholder="Quantity"/></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><input type="text" className={styles.input_text} value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
 											</tr>
 											)
 									})}
@@ -134,12 +134,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e.target.value)}} placeholder="Rate"/></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><input type="text" className={styles.input_text} value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
 											</tr>
 											)
 									})}
@@ -147,12 +147,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td><input type="text" value={item.unit} onChange={e=>{updateItem(item.id,"unit",e.target.value)}} placeholder=""/></td>
+											<tr  key={item.id}>
+												<td className={styles.item}><input type="text" className={styles.input_text} value={item.unit} onChange={e=>{updateItem(item.id,"unit",e)}} placeholder=""/></td>
 											</tr>
 											)
 									})}
@@ -160,12 +160,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							</table>
 						</td>
 						<td>
-							<table className="main-inside">
+							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
 									{input.items.map((item,index)=>{
 										return(
-											<tr className="item" key={item.id}>
-												<td>{item.ppu * item.quantity}</td>
+											<tr  key={item.id}>
+												<td className={styles.item}>{item.ppu * item.quantity}</td>
 											</tr>
 											)
 									})}
@@ -177,7 +177,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 {/*				<tbody>
 				{input.items.map((item,index)=>{
 					return(
-						<tr className="item" key={item.id}>
+						<tr className={styles.item} key={item.id}>
 							<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e.target.value)}>-</button><div>{index+1}</div></td>
 							<td><input type="text" value={item.name} onChange={e=>{updateItem(item.id,"name",e.target.value)}} placeholder="Item Name"/></td>
 							<td><input type="text" value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e.target.value)}} placeholder=""/></td>
@@ -191,12 +191,12 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				
 				</tbody>*/}
 			</table>
-				<div className="no-print">
+				<div className={styles.no_print}>
 						<div>
 							<button onClick={addNew}>+</button>
 						</div>
 					</div>
-			<table className="footer" border="1">
+			<table className={`${styles.table} ${styles.footer}`} border="1">
 				<tbody>			
 				<tr>
 					<td rowSpan="9" width="50%">
@@ -213,7 +213,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>CGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.cgst} onChange={e=>{handleChange('cgst',e.target.value)}} placeholder="CGST"/></td>
+					<td><input type="text" className={styles.input_text} value={input.cgst} onChange={e=>{handleChange('cgst',e.target.value)}} placeholder="CGST"/></td>
 				</tr>
 				<tr>
 					<td>CGST Amount:</td>
@@ -221,7 +221,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>SGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.sgst} onChange={e=>{handleChange('sgst',e.target.value)}} placeholder="SGST"/></td>
+					<td><input type="text" className={styles.input_text} value={input.sgst} onChange={e=>{handleChange('sgst',e.target.value)}} placeholder="SGST"/></td>
 				</tr>
 				<tr>
 					<td>SGST Amount:</td>
@@ -229,7 +229,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>IGST % :</td>
-					<td><input type="text" className="update-item-text" value={input.igst} onChange={e=>{handleChange('igst',e.target.value)}} placeholder="IGST"/></td>
+					<td><input type="text" className={styles.input_text} value={input.igst} onChange={e=>{handleChange('igst',e.target.value)}} placeholder="IGST"/></td>
 				</tr>
 				<tr>
 					<td>IGST Amount:</td>
@@ -241,7 +241,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				</tbody>
 			</table>
-			<table className='signature' border="0">
+			<table className={`${styles.table} ${styles.signature}`} border="0">
 				<tbody>
 				<tr><td><strong>For Jain Sons</strong></td></tr>
 				<tr><td height="30px"></td></tr>

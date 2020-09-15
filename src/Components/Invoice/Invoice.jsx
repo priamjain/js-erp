@@ -52,8 +52,6 @@ export class Invoice extends React.Component {
 				int:prev.int+1
 			})
 
-			},()=>{
-				console.log([...this.state.items])
 			})
 	}
 

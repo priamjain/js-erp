@@ -1,28 +1,4 @@
-
-h1{
-    color:#007bff;
-    font-size: 3em;
-    font-family: times;
-    font-weight: 1000;
-}
-input[type=text],textarea,input[type=text]:focus,textarea:focus{
-    width: 100%;
-    text-align: left;
-    background-color: inherit;
-    font-size: 12px!important;
-    color: inherit;
-    border:none;
-    outline: none;
-}
-input[type=date]{
-    border:none;
-    outline: none;
-}
-textarea{
-    overflow-y: hidden;
-    resize: none;
-}
-.input{
+.invoice{
     font-size: 12px!important;
     margin: 0;
     padding: 0;
@@ -33,38 +9,65 @@ textarea{
     height: 297mm;
     max-height: 297mm;
 }
-header{
+
+.firm_name{
+    color:#007bff;
+    font-size: 3em;
+    font-family: times;
+    font-weight: 1000;
+}
+
+.header_info div{
+    display: flex;
+    justify-content: space-around;
+}
+.input_text,.input_text:focus{
+    width: 100%;
+    text-align: left;
+    background-color: inherit;
+    font-size: 12px!important;
+    color: inherit;
+    border:none;
+    outline: none;
+}
+.input_date{
+    border:none;
+    outline: none;
+}
+.fixed_textarea{
+    overflow-y: hidden;
+    resize: none;
+}
+
+.header{
     text-align: center;
     width: 100%;
     margin-bottom:20px;
 }
 
-.header-info div{
-    display: flex;
-    justify-content: space-around;
-}
-table{
+
+.table{
     vertical-align: top;
     border-collapse: collapse;
     margin: 5px 0;
     width:100%;
-}
-table{
     border:1px solid black;
 }
-td,th{
+
+.table td,.table th{
     border-left:1px solid black;
     vertical-align: top;
 }
-select {
+.select {
     padding: 0 5px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border: none; /* If you want to remove the border as well */
+    border: none;
     background: none;
 }
 .item{
+    padding: 4px 0;
     text-align: top;
 }
 .footer{
@@ -79,7 +82,7 @@ select {
 .footer p{
     padding-left: 10px;
 }
-.delete-item{
+.delete_item{
     background-color: red;
     position: absolute;
     display: none;
@@ -87,7 +90,7 @@ select {
 .item{
     height: 20px;
 }
-.item:hover .delete-item{
+.item:hover .delete_item{
     display: block;
 
 }
@@ -100,23 +103,23 @@ select {
     display: block;
     height: 590px;
 }
-.main-row>td{
+.main_row>td{
     height: 572px;
 }
 .main input{
     text-align: center;
 }
-.main-inside{
+.main_inside{
     border:none;
 }
-.main-inside td{
+.main_inside td{
     border-left: none;
 } 
 @media print{
-    .no-print{
+    .no_print{
         display: none;
     }
-    .input{
+    .invoice{
         zoom:0;
     }
 }
