@@ -74,6 +74,13 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						
 					</tbody>
 				</table>
+				<div className={styles.no_print}>
+						<div>
+							<button onClick={addNew}>Add New Row</button>
+							<button type="button" className={styles.no_print} onClick={e=>setNewItem(true)}>Add New Item to List</button>
+						</div>
+					</div>
+
 			<table className={`${styles.table} ${styles.main}`}>
 				<thead>
 					<tr>
@@ -204,12 +211,6 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				
 				</tbody>*/}
 			</table>
-				<div className={styles.no_print}>
-						<div>
-							<button onClick={addNew}>Add New Row</button>
-							<button type="button" className={styles.no_print} onClick={e=>setNewItem(true)}>Add New Item to List</button>
-						</div>
-					</div>
 			<table className={`${styles.table} ${styles.footer}`} border="1">
 				<tbody>			
 				<tr>
