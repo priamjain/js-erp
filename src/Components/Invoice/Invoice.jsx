@@ -6,13 +6,14 @@ export class Invoice extends React.Component {
 		super(props)
 	
 		this.state = {
+			 items:[],
 			 customers:[],
 			 clientName:"",
 			 clientAddress:"",
 			 clientGSTIN:"",
 			 paymentMethod:"",
 			 invoiceNumber:"",
-			 items:[],
+			 itemsList:[],
 			 totalAmount:0,
 			 int:0,
 			 sgst:9,
@@ -25,6 +26,10 @@ export class Invoice extends React.Component {
 		if(customers!==null){
 			this.setState({'customers':[...JSON.parse(customers)]})
 		}
+		let items = localStorage.getItem('items');
+		if(items!==null){
+			this.setState({'items':[...JSON.parse(items)]})
+		}
 	}
 	handleChange = (key,value) =>{
 		this.setState({
@@ -33,7 +38,7 @@ export class Invoice extends React.Component {
 	}
 
 	addNew = () =>{
-		if(this.state.items.length<24){
+		if(this.state.itemsList.length<24){
 		this.setState((prev)=>{
 			let newItem={
 				id:prev.int,
@@ -45,9 +50,9 @@ export class Invoice extends React.Component {
 				amount:""
 			}
 
-			let items = [...prev.items,newItem]
+			let itemsList = [...prev.itemsList,newItem]
 			return({
-				items:items,
+				itemsList:itemsList,
 				int:prev.int+1
 			})
 
@@ -59,12 +64,12 @@ export class Invoice extends React.Component {
 	deleteItem=(id,event)=>{
 		event.persist();
 		this.setState((prev)=>{
-			let index = prev.items.findIndex(item=> item.id===id);
-			let newArray = [...prev.items]
+			let index = prev.itemsList.findIndex(item=> item.id===id);
+			let newArray = [...prev.itemsList]
 			newArray.splice(index,1);
 			console.log(newArray);
 			return({
-				items:newArray
+				itemsList:newArray
 			})
 		})
 	}
@@ -72,11 +77,11 @@ export class Invoice extends React.Component {
 	updateItem=(id,key,event)=>{
 		event.persist();
 		this.setState((prev)=>{
-			let index = prev.items.findIndex(item=> item.id===id);
-			let newArray = [...prev.items];
+			let index = prev.itemsList.findIndex(item=> item.id===id);
+			let newArray = [...prev.itemsList];
 			newArray[index][key] = event.target.value;
 			return({
-				items:newArray
+				itemsList:newArray
 			})
 		})
 	}

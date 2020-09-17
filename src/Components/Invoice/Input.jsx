@@ -1,19 +1,22 @@
 import React,{useState} from 'react'
 import styles from './Input.module.css'
 import NewCustomer from './NewCustomer'
+import NewItem from './NewItem'
 
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
-	const [modal, setModal] = useState(false);
+	const [newCustomer, setNewCustomer] = useState(false);
+	const [newItem, setNewItem] = useState(false);
 	const setCustomer = (e) =>{
 		handleChange('clientName',e.target.value);
 		let customer = input.customers.filter(cust => cust.clientName===e.target.value)
 		handleChange('clientAddress',customer[0]['clientAddress']);
 		handleChange('clientGSTIN',customer[0]['clientGSTIN']);
 	}
-	let amount = input.items.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
+	let amount = input.itemsList.reduce((a,b)=>a+(b['ppu']*b['quantity']),0);
 	return (
 		<div>
-		{modal?<NewCustomer customers={input.customers} handleChange={handleChange} setModal={setModal}/>:null}
+		{newCustomer?<NewCustomer customers={input.customers} handleChange={handleChange} setNewCustomer={setNewCustomer}/>:null}
+		{newItem?<NewItem items={input.itemsList} handleChange={handleChange} setNewItem={setNewItem}/>:null}
 		<div className={styles.invoice}>
 			<header className={styles.header}>
 				<div>
@@ -48,7 +51,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 								{input.customers.map(cust=>{
 									return <option key={cust.clientGSTIN} name={cust.clientName}>{cust.clientName}</option>})}
 							</select>
-							<button type="button" className={styles.no_print} onClick={e=>setModal(true)}>Add New Customer</button></td>
+							<button type="button" className={styles.no_print} onClick={e=>setNewCustomer(true)}>Add New Customer</button></td>
 							{/*<td><input type="text" value={input.clientName} onChange={e=>{handleChange('clientName',e.target.value)}} placeholder="Client Name"/></td>*/}
 						</tr>
 						<tr>
@@ -88,7 +91,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
 												<td className={styles.item}><button className={`${styles.delete_item} ${styles.no_print}`} onClick={(e)=>deleteItem(item.id,e)}>-</button><div>{index+1}</div></td>
@@ -101,10 +104,16 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
-												<td className={styles.item}><input type="text" className={styles.input_text} value={item.name} onChange={e=>{updateItem(item.id,"name",e)}} placeholder="Item Name"/></td>
+												<td className={styles.item}>
+													<select className={styles.select} value={item.name} onChange={e=>{updateItem(item.id,"name",e)}}>
+														<option>--Select--</option>
+														{input.items.map(selected=>{
+															return <option key={selected.itemName} name={selected.itemName}>{selected.itemName}</option>})}
+													</select>
+												</td>
 											</tr>
 											)
 									})}
@@ -114,7 +123,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
 												<td className={styles.item}><input type="text" className={styles.input_text} value={item.hsn} onChange={e=>{updateItem(item.id,"hsn",e)}} placeholder=""/></td>
@@ -127,10 +136,10 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
-												<td className={styles.item}><input type="text" className={styles.input_text} value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
+												<td className={styles.item}><input type="number" className={styles.input_text} value={item.quantity} onChange={e=>{updateItem(item.id,"quantity",e)}} placeholder="Quantity"/></td>
 											</tr>
 											)
 									})}
@@ -140,10 +149,10 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
-												<td className={styles.item}><input type="text" className={styles.input_text} value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
+												<td className={styles.item}><input type="number" className={styles.input_text} value={item.ppu} onChange={e=>{updateItem(item.id,"ppu",e)}} placeholder="Rate"/></td>
 											</tr>
 											)
 									})}
@@ -153,7 +162,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
 												<td className={styles.item}><input type="text" className={styles.input_text} value={item.unit} onChange={e=>{updateItem(item.id,"unit",e)}} placeholder=""/></td>
@@ -166,7 +175,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<td>
 							<table className={`${styles.table} ${styles.main_inside}`}>
 								<tbody>
-									{input.items.map((item,index)=>{
+									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
 												<td className={styles.item}>{item.ppu * item.quantity}</td>
@@ -179,7 +188,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					</tr>
 				</tbody>
 {/*				<tbody>
-				{input.items.map((item,index)=>{
+				{input.itemsList.map((item,index)=>{
 					return(
 						<tr className={styles.item} key={item.id}>
 							<td><button className="delete-item no-print" onClick={(e)=>deleteItem(item.id,e.target.value)}>-</button><div>{index+1}</div></td>
@@ -197,7 +206,8 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 			</table>
 				<div className={styles.no_print}>
 						<div>
-							<button onClick={addNew}>+</button>
+							<button onClick={addNew}>Add New Row</button>
+							<button type="button" className={styles.no_print} onClick={e=>setNewItem(true)}>Add New Item to List</button>
 						</div>
 					</div>
 			<table className={`${styles.table} ${styles.footer}`} border="1">
