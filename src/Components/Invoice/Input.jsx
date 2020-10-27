@@ -252,7 +252,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>Amount to be Paid:</td>
-					<td>Rs. {amount+(amount*input.cgst/100)+(amount*input.sgst/100)+(amount*input.igst/100)}</td>
+					<td>Rs. {Math.round(amount+(amount*input.cgst/100)+(amount*input.sgst/100)+(amount*input.igst/100))}</td>
 				</tr>
 				</tbody>
 			</table>

@@ -36,6 +36,7 @@
     padding: 0 40px;
 }
 .input_date{
+    font-weight: bold;
     padding: 0 5px;
     border:none;
     outline: none;
