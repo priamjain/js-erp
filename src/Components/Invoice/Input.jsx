@@ -84,8 +84,8 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 			<table className={`${styles.table} ${styles.main}`}>
 				<thead>
 					<tr>
-						<th width="40px">S No.</th>
-						<th width="600px">Item</th>
+						<th width="50px">S No.</th>
+						<th width="550px">Item</th>
 						<th width="70px">HSN</th>
 						<th width="70px">Quantity</th>
 						<th width="100px">Rate</th>
