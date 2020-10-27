@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import styles from './Input.module.css'
 import NewCustomer from './NewCustomer'
 import NewItem from './NewItem'
-
+import logo from '../../logo.png'
 function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 	const [newCustomer, setNewCustomer] = useState(false);
 	const [newItem, setNewItem] = useState(false);
@@ -21,7 +21,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 			<header className={styles.header}>
 				<div>
 					<h1 className={styles.firm_name}>
-						JAIN SONS
+						<img src={logo} alt="LOGO" height="58px"/>
 					</h1>
 				</div>
 				<div className={styles.header_info}>
@@ -215,11 +215,11 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				<tbody>			
 				<tr>
 					<td rowSpan="9" width="50%">
-						<p><strong>Bank Details:</strong></p>
-						<p>Name of Bank: <strong>ALLAHABAD BANK</strong></p>
-						<p>Branch: <strong>Mall Road, Amritsar</strong></p>
-						<p>Bank Account Number: <strong>20845505897</strong></p>
-						<p>IFSC Code: <strong>ALLA0210443</strong></p>
+						<p><em>Bank Details:</em></p>
+						<p><em>Name of Bank:</em> ALLAHABAD BANK</p>
+						<p><em>Branch:</em> Mall Road, Amritsar</p>
+						<p><em>Bank Account Number:</em> 20845505897</p>
+						<p><em>IFSC Code:</em> ALLA0210443</p>
 					</td>
 				</tr>
 				<tr>
