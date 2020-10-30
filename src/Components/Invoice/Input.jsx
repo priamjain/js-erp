@@ -82,7 +82,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					</div>
 
 			<table className={`${styles.table} ${styles.main}`}>
-				<div className={`${styles.watermark}`}>RAPCA
+				<div className={`${styles.watermark} ${styles.only_print}`}>RAPCA
 					<br/>
 					POLYX
 				</div>

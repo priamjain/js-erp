@@ -126,9 +126,10 @@
     border-left: none;
 }
 .watermark{
+    display: none;
     position: fixed;
     color: lightgray;
-    opacity: 0.15;
+    opacity: 0.3;
     font-size: 8em;
     width: 100%;
     top: 40%; 
@@ -143,6 +144,9 @@
     }
     .invoice{
         zoom:0;
+    }
+    .only_print{
+        display: block;
     }
 }
 @page {
