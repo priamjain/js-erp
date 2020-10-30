@@ -124,6 +124,18 @@
 }
 .main_inside td{
     border-left: none;
+}
+.watermark{
+    position: fixed;
+    color: lightgray;
+    opacity: 0.15;
+    font-size: 8em;
+    width: 100%;
+    top: 40%; 
+    right:20%;   
+    text-align: center;
+    transform: rotate(-20deg);
+    
 } 
 @media print{
     .no_print{

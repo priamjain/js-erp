@@ -82,6 +82,10 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					</div>
 
 			<table className={`${styles.table} ${styles.main}`}>
+				<div className={`${styles.watermark}`}>RAPCA
+					<br/>
+					POLYX
+				</div>
 				<thead>
 					<tr>
 						<th width="50px">S No.</th>
