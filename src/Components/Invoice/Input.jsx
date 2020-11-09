@@ -31,11 +31,17 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 							Amritsar, Punjab 143001,
 							India							
 					</p>
-					<div>
+					<div className={styles.header_info_span}>
 						<span>GSTIN: 03ADLPJ3778N1Z1</span>
-						<span>Mobile Number: +91 9888470055</span>
+						<span>Mobile. No. : +91 9888470055</span>
+					</div>
+					<div className={styles.header_info_span}>
+						<span>
+						TAX INVOICE
+						</span>
 					</div>
 				</div>
+				
 			</header>
 			<hr/>
 				<table border="1" className={styles.table}>
@@ -189,7 +195,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 									{input.itemsList.map((item,index)=>{
 										return(
 											<tr  key={item.id}>
-												<td className={styles.item}>{item.ppu * item.quantity}</td>
+												<td className={styles.item}>{(item.ppu * item.quantity).toFixed(2)}</td>
 											</tr>
 											)
 									})}
@@ -228,35 +234,35 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</tr>
 				<tr>
 					<td>Total Amount:</td>
-					<td>Rs. {amount}</td>
+					<td>Rs. {amount.toFixed(2)}</td>
 				</tr>
 				<tr>
 					<td>CGST % :</td>
-					<td><input type="text" className={styles.input_text} value={input.cgst} onChange={e=>{handleChange('cgst',e.target.value)}} placeholder="CGST"/></td>
+					<td><input type="number" className={styles.input_text} value={input.cgst} onChange={e=>{handleChange('cgst',e.target.value)}} placeholder="CGST"/></td>
 				</tr>
 				<tr>
 					<td>CGST Amount:</td>
-					<td>Rs. {(amount*input.cgst/100)}</td>
+					<td>Rs. {(amount*input.cgst/100).toFixed(2)}</td>
 				</tr>
 				<tr>
 					<td>SGST % :</td>
-					<td><input type="text" className={styles.input_text} value={input.sgst} onChange={e=>{handleChange('sgst',e.target.value)}} placeholder="SGST"/></td>
+					<td><input type="number" className={styles.input_text} value={input.sgst} onChange={e=>{handleChange('sgst',e.target.value)}} placeholder="SGST"/></td>
 				</tr>
 				<tr>
 					<td>SGST Amount:</td>
-					<td>Rs. {(amount*input.sgst/100)}</td>
+					<td>Rs. {(amount*input.sgst/100).toFixed(2)}</td>
 				</tr>
 				<tr>
 					<td>IGST % :</td>
-					<td><input type="text" className={styles.input_text} value={input.igst} onChange={e=>{handleChange('igst',e.target.value)}} placeholder="IGST"/></td>
+					<td><input type="number" className={styles.input_text} value={input.igst} onChange={e=>{handleChange('igst',e.target.value)}} placeholder="IGST"/></td>
 				</tr>
 				<tr>
 					<td>IGST Amount:</td>
-					<td>Rs. {(amount*input.igst/100)}</td>
+					<td>Rs. {(amount*input.igst/100).toFixed(2)}</td>
 				</tr>
 				<tr>
 					<td>Amount to be Paid:</td>
-					<td>Rs. {Math.round(amount+(amount*input.cgst/100)+(amount*input.sgst/100)+(amount*input.igst/100))}</td>
+					<td>Rs. {(amount+(amount*input.cgst/100)+(amount*input.sgst/100)+(amount*input.igst/100)).toFixed(1)}</td>
 				</tr>
 				</tbody>
 			</table>
