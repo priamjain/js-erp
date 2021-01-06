@@ -26,7 +26,10 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 				</div>
 				<div className={styles.header_info}>
 					<p>
-							Opposite Gill Farms, Daburji, Punjab 143413						
+							771, Guru Arjun Dev Nagar,
+							Opp. Ahuja Sweets, Tarn Taran Road,
+							Amritsar, Punjab 143001,
+							India							
 					</p>
 					<div className={styles.header_info_span}>
 						<span>GSTIN: 03ADLPJ3778N1Z1</span>
