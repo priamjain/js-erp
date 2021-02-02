@@ -25,12 +25,19 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 					</h1>
 				</div>
 				<div className={styles.header_info}>
-					<p>
+					<div className={styles.header_address}>
+					<select >
+						<option>
 							771, Guru Arjun Dev Nagar,
 							Opp. Ahuja Sweets, Tarn Taran Road,
 							Amritsar, Punjab 143001,
 							India							
-					</p>
+						</option>
+						<option>
+							Opposite to Gill Farms, adjacent lane to RK Marble, G.T. Road, Daburji, Punjab 143006, India
+						</option>
+					</select>
+					</div>
 					<div className={styles.header_info_span}>
 						<span>GSTIN: 03ADLPJ3778N1Z1</span>
 						<span>Mobile. No. : +91 9888470055</span>
