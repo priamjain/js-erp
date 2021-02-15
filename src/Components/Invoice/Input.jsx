@@ -236,7 +236,7 @@ function Input({input,handleChange,addNew,updateItem,deleteItem}) {
 						<p><em>Name of Bank:</em> ALLAHABAD BANK</p>
 						<p><em>Branch:</em> Mall Road, Amritsar</p>
 						<p><em>Bank Account Number:</em> 20845505897</p>
-						<p><em>IFSC Code:</em> ALLA0210443</p>
+						<p><em>IFSC Code:</em> IDIB000A618</p>
 					</td>
 				</tr>
 				<tr>
